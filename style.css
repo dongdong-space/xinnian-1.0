@@ -987,3 +987,77 @@ code { font-family: 'Consolas', monospace; color: #ff7b72; }
     80% { transform: translate(2px, -2px); text-shadow: -2px 0 #ff0055, 2px 0 #00f3ff;}
     100% { transform: translate(0); }
 }
+/* =========================================
+   📱 移动端适配 (Media Queries)
+   当屏幕宽度小于 768px (手机模式) 时生效
+   ========================================= */
+   @media (max-width: 768px) {
+
+    /* 1. 解除高度锁定，允许整个页面滚动 */
+    body, .container {
+        height: auto !important;
+        overflow-y: auto !important; /* 开启系统级滚动 */
+        padding: 10px; /* 减少边缘留白 */
+    }
+
+    /* 2. 布局重构：左右变上下 */
+    .main-layout {
+        flex-direction: column; /* 关键：从横排变成竖排 */
+        gap: 30px;
+    }
+
+    /* 左侧控制台：占满宽度 */
+    .left-panel {
+        flex: none;
+        width: 100%;
+        padding-right: 0;
+        overflow: visible; /* 内容全部展示出来，不藏着 */
+    }
+
+    /* 右侧结果流：放在下面，固定高度 */
+    .right-panel {
+        flex: none;
+        width: 100%;
+        height: 500px; /* 给一个固定高度，形成独立的滚动区 */
+        margin-bottom: 50px; /* 底部留点空 */
+    }
+
+    /* 3. AI 卡片变阵：一行一个 */
+    .hero-section {
+        grid-template-columns: 1fr; /* 强制单列 */
+        gap: 15px;
+    }
+    
+    /* 稍微调低一点卡片高度，节省空间 */
+    .hero-card {
+        height: 120px; 
+        padding: 15px;
+    }
+
+    /* 4. 调整 Logo 位置 (防止遮挡) */
+    .cyber-logo {
+        position: relative; /* 取消绝对定位 */
+        left: 0;
+        transform: none;
+        margin: 0 auto; /* 依然居中 */
+        justify-content: center;
+        margin-bottom: 10px; /* 给下面留点空 */
+    }
+
+    header {
+        height: auto;
+        flex-direction: column; /* 导航栏也变成竖排 */
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    /* 隐藏一些不重要的导航文字，只留头像，节省空间 */
+    .nav-tabs {
+        display: none; 
+    }
+}
