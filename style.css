@@ -43,27 +43,7 @@ header {
     gap: 20px;
 }
 
-.faith-box {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #000;
-    color: #00f3ff;
-    border: 2px solid #00f3ff;
-    padding: 10px 30px;
-    font-weight: bold;
-    font-size: 18px;
-    letter-spacing: 4px;
-    box-shadow: 0 0 20px rgba(0, 243, 255, 0.8), 
-                0 0 40px rgba(0, 243, 255, 0.4),
-                inset 0 0 15px rgba(0, 243, 255, 0.3);
-    text-transform: uppercase;
-    font-family: 'Courier New', 'Microsoft YaHei', monospace;
-    text-shadow: 0 0 10px rgba(0, 243, 255, 1),
-                 0 0 20px rgba(0, 243, 255, 0.8),
-                 0 0 30px rgba(0, 243, 255, 0.6);
-    animation: glow-pulse 2s ease-in-out infinite alternate;
-}
+
 
 @keyframes glow-pulse {
     from {
@@ -840,4 +820,170 @@ code { font-family: 'Consolas', monospace; color: #ff7b72; }
     overflow-y: auto !important;
     height: 100%;
     padding-bottom: 20px;
+}
+/* =========================================
+   🚀 修正：赛博朋克 Logo (绝对居中版)
+   ========================================= */
+   .cyber-logo {
+    /* --- 核心定位修改 --- */
+    position: absolute;        /* 1. 把它从排版流里拿出来悬浮 */
+    left: 50%;                 /* 2. 放到水平 50% 的位置 */
+    transform: translateX(-50%); /* 3. 向左回退自身宽度的一半，实现完美居中 */
+    
+    /* --- 保持原有的样式 --- */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 100; /* 保证它浮在最上面 */
+    
+    /* 移除之前的 padding 和 margin，因为悬浮后不需要了 */
+    padding-left: 0;
+    margin-right: 0;
+}
+
+/* --- 下面的图标和文字样式保持不变，如果之前删了要记得补上，或者只替换上面这一块 --- */
+/* (为了保险起见，下面是完整的内部样式，你可以检查一下有没有漏) */
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-icon::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed #00f3ff;
+    border-radius: 4px;
+    animation: rotateCore 10s linear infinite;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+}
+
+.icon-core {
+    width: 20px;
+    height: 20px;
+    background: #00f3ff;
+    transform: rotate(45deg);
+    box-shadow: 0 0 20px #00f3ff, inset 0 0 10px #fff;
+    animation: pulseCore 2s ease-in-out infinite alternate;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.text-main {
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.8), 2px 2px 0px rgba(255, 0, 85, 0.5);
+    font-family: 'Arial Black', sans-serif;
+    position: relative;
+}
+
+.text-sub {
+    font-size: 10px;
+    color: #00f3ff;
+    letter-spacing: 1px;
+    font-family: 'Consolas', monospace;
+    opacity: 0.8;
+    margin-top: 4px;
+}
+/* --- 1. 左侧动态图标 (数据核心) --- */
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 外圈旋转光环 */
+.logo-icon::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed #00f3ff; /* 虚线边框 */
+    border-radius: 4px;
+    animation: rotateCore 10s linear infinite; /* 缓慢旋转 */
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.5); /* 外部发光 */
+}
+
+/* 内部能量核心 */
+.icon-core {
+    width: 20px;
+    height: 20px;
+    background: #00f3ff;
+    transform: rotate(45deg); /* 菱形 */
+    box-shadow: 0 0 20px #00f3ff, inset 0 0 10px #fff; /* 强烈内外发光 */
+    animation: pulseCore 2s ease-in-out infinite alternate; /* 呼吸闪烁 */
+}
+
+/* --- 2. 右侧文字部分 --- */
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+/* 主标题 (中文) */
+.text-main {
+    font-size: 22px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.8), 2px 2px 0px rgba(255, 0, 85, 0.5); /* 青红撞色故障感 */
+    font-family: 'Arial Black', sans-serif; /* 粗壮字体 */
+    position: relative;
+}
+
+/* 副标题 (英文+光标) */
+.text-sub {
+    font-size: 10px;
+    color: #00f3ff;
+    letter-spacing: 1px;
+    font-family: 'Consolas', monospace; /* 代码字体 */
+    opacity: 0.8;
+    margin-top: 4px;
+}
+
+/* --- 动画定义 --- */
+@keyframes rotateCore {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulseCore {
+    from { opacity: 0.8; transform: rotate(45deg) scale(0.9); }
+    to { opacity: 1; transform: rotate(45deg) scale(1.1); box-shadow: 0 0 30px #00f3ff, inset 0 0 15px #fff; }
+}
+
+/* --- 鼠标悬停时的互动 --- */
+.cyber-logo:hover .text-main {
+    animation: glitchText 0.3s linear infinite; /* 悬停时文字剧烈抖动 */
+}
+.cyber-logo:hover .logo-icon::before {
+    border-style: solid; /* 边框变实 */
+    animation-duration: 2s; /* 加速旋转 */
+}
+
+@keyframes glitchText {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); text-shadow: 2px 0 #ff0055, -2px 0 #00f3ff; }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); text-shadow: -2px 0 #ff0055, 2px 0 #00f3ff;}
+    100% { transform: translate(0); }
 }
