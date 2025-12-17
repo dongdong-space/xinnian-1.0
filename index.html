@@ -37,45 +37,45 @@
         <div class="main-layout">
             <!-- 左侧栏：控制面板 -->
             <div class="left-panel">
-                <h2>AI 核心能力 (AI 驱动)</h2>
+                <h2>信念核心能力 (多AI 驱动)</h2>
                 <div class="hero-section">
-                    <div class="hero-card card-1" onclick="startChat('小红书文案专家', '你是一个小红书爆款文案专家。请把用户输入的内容改写成小红书风格，包含emoji，痛点刺激，和互动引导。')">
+                    <div class="hero-card card-1" onclick="startChat('小红书文案专家', '你是一个小红书爆款文案专家。请把用户输入的内容改写成小红书风格，包含emoji，痛点刺激，和互动引导。', 'xiaomi/mimo-v2-flash:free')">
                         <div class="card-icon">📝</div>
                         <div class="hero-title">小红书文案</div>
-                        <div class="hero-desc">输入主题，自动生成笔记</div>
+                        <div class="hero-desc">小米 MiMo 驱动：更懂中文社交</div>
                     </div>
                     
-                    <div class="hero-card card-2" onclick="startChat('爆款拆解师', '你是一个短视频拆解专家。用户会给你文案，请分析：1.黄金前3秒 2.情绪钩子 3.转化逻辑。并生成仿写脚本。')">
+                    <div class="hero-card card-2" onclick="startChat('爆款拆解师', '你是一个短视频拆解专家。用户会给你文案，请分析：1.黄金前3秒 2.情绪钩子 3.转化逻辑。', 'deepseek-ai/DeepSeek-V2.5')">
                         <div class="card-icon">📊</div>
                         <div class="hero-title">爆款拆解</div>
-                        <div class="hero-desc">输入文案，深度拆解逻辑</div>
+                        <div class="hero-desc">DeepSeek 驱动：逻辑分析天花板</div>
                     </div>
-
-                    <div class="hero-card card-3" onclick="startChat('分镜脚本导演', '你是一个视频导演。用户输入口播文案，请将其转化为分镜脚本表格，包含：画面描述（视觉关键词）、台词、BGM建议。')">
+                
+                    <div class="hero-card card-3" onclick="startChat('分镜脚本导演', '你是一个视频导演。用户输入口播文案，请将其转化为分镜脚本表格，包含：画面描述、台词、BGM建议。', 'Qwen/Qwen2.5-72B-Instruct')">
                         <div class="card-icon">🎬</div>
                         <div class="hero-title">分镜生成</div>
-                        <div class="hero-desc">输入文案，转成拍摄表格</div>
+                        <div class="hero-desc">通义千问 驱动：懂文学懂画面</div>
                     </div>
-
-                    <div class="hero-card card-4" onclick="startChat('代码助手', '你是一个全栈工程师，精通 HTML/CSS/JS/Python。请直接给出代码解决方案。')">
+                
+                    <div class="hero-card card-4" onclick="startChat('代码大神', '你是一个全栈工程师，精通Python和Web开发。', 'deepseek-ai/DeepSeek-V2.5')">
                         <div class="card-icon">💻</div>
                         <div class="hero-title">代码助手</div>
-                        <div class="hero-desc">让 AI 帮你写 HTML 网页</div>
+                        <div class="hero-desc">DeepSeek 驱动：写代码贼6</div>
                     </div>
                 </div>
                 
                 <div class="production-controls">
                     <input type="text" id="topicInput" placeholder="输入主题（例如：懒人减肥早餐）" class="topic-input">
-                    <button onclick="sendTask()" class="produce-btn">🚀 立即生产</button>
+                    <button id="generateBtn" class="produce-btn">🚀 立即生产</button>
                 </div>
                 
                 <h2>通用工具</h2>
                 <div class="agents-grid">
-                    <div class="agent-card" onclick="startChat('AI 自由对话', '你是一个乐于助人的 AI 助手。')">
+                    <div class="agent-card" onclick="startChat('AI 自由对话', '你是一个乐于助人的 AI 助手。', 'xiaomi/mimo-v2-flash:free')">
                         <div class="agent-icon">🤖</div>
                         <div class="agent-info">
                             <div class="agent-name">自由对话模式</div>
-                            <div class="agent-desc">没有预设，随便聊聊</div>
+                            <div class="agent-desc">小米MiMo</div>
                         </div>
                     </div>
                 </div>
@@ -91,18 +91,25 @@
 
     <div id="app-modal" class="modal">
         <div class="modal-body">
-            <div class="modal-header">
-                <span id="modal-title">应用名称</span>
-                <button class="close-btn" onclick="closeApp()">×</button>
+            <div class="chat-sidebar">
+                <button class="new-chat-btn" onclick="startNewSession()">+ 新建聊天</button>
+                <div class="history-list" id="session-list">
+                    </div>
             </div>
-            
-            <div class="chat-container">
-                <div class="chat-history" id="chat-history">
-                    <div class="message ai">你好！我是你的 AI 助手，请告诉我你要做什么？</div>
+        
+            <div class="chat-main-area">
+                <div class="modal-header">
+                    <span id="modal-title">AI 自由对话</span>
+                    <button class="close-btn" onclick="closeApp()">×</button>
                 </div>
-                <div class="chat-input-area">
-                    <input type="text" id="user-input" placeholder="在这里输入你的文案或需求..." onkeypress="handleEnter(event)">
-                    <button id="send-btn" onclick="sendMessage()">发送</button>
+                
+                <div class="chat-container">
+                    <div class="chat-history" id="chat-history">
+                        </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="user-input" placeholder="在这里输入..." onkeypress="handleEnter(event)">
+                        <button id="send-btn" onclick="sendMessage()">发送</button>
+                    </div>
                 </div>
             </div>
         </div>
